@@ -84,11 +84,42 @@ under the License.
         <log4j.version>2.17.1</log4j.version>
         <scala-library.version>2.12</scala-library.version>
         <jaxb.api.version>2.3.1</jaxb.api.version>
+        <testcontainers.version>1.19.1</testcontainers.version>
         <flink.parent.artifactId>flink-connector-hive-parent</flink.parent.artifactId>
     </properties>
 
     <dependencyManagement>
+
         <dependencies>
+            <dependency>
+                <groupId>org.apache.flink</groupId>
+                <artifactId>flink-end-to-end-tests-common</artifactId>
+                <version>${flink.version}</version>
+                <scope>test-jar</scope>
+            </dependency>
+            <!-- Flink dependencies -->
+            <dependency>
+                <groupId>org.apache.flink</groupId>
+                <artifactId>flink-test-utils</artifactId>
+                <version>${flink.version}</version>
+                <scope>test</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>log4j</groupId>
+                        <artifactId>log4j</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-log4j12</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.flink</groupId>
+                <artifactId>flink-test-utils-junit</artifactId>
+                <version>${flink.version}</version>
+                <scope>test</scope>
+            </dependency>
             <dependency>
                 <!-- dependency convergence -->
                 <groupId>org.codehaus.woodstox</groupId>
@@ -265,7 +296,6 @@ under the License.
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
                 <version>${slf4j.version}</version>
-                <scope>test</scope>
             </dependency>
             <!--We downgrade the version of avro for tests. We do that because we test Hive's built-in
             formats, which do not work with newer avro versions. We do not downgrade the version
