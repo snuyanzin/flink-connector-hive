@@ -30,6 +30,7 @@ under the License.
 
 
 	<properties>
+		<okhttp.version>3.14.9</okhttp.version>
 		<!--
 		Hive requires Hadoop 2 to avoid
 		java.lang.NoClassDefFoundError: org/apache/hadoop/metrics/Updater errors
@@ -46,9 +47,19 @@ under the License.
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.flink</groupId>
-			<artifactId>flink-end-to-end-tests-common</artifactId>
-			<version>${flink.version}</version>
+			<artifactId>flink-test-utils-junit</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.flink</groupId>
+			<artifactId>flink-test-utils</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.squareup.okhttp3</groupId>
+			<artifactId>okhttp</artifactId>
+			<version>${okhttp.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.flink</groupId>
