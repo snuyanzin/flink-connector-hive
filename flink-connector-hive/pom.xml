@@ -25,11 +25,11 @@ under the License.
 
 	<parent>
 		<groupId>org.apache.flink</groupId>
-		<artifactId>flink-connectors</artifactId>
-		<version>1.19-SNAPSHOT</version>
+		<artifactId>flink-connector-hive-parent</artifactId>
+		<version>3.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>flink-connector-hive_${scala.binary.version}</artifactId>
+	<artifactId>flink-connector-hive</artifactId>
 	<name>Flink : Connectors : Hive</name>
 
 	<packaging>jar</packaging>
@@ -186,37 +186,36 @@ under the License.
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-table-common</artifactId>
-			<version>${project.version}</version>
+			<version>${flink.version}</version>
 			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-table-api-java-bridge</artifactId>
-			<version>${project.version}</version>
+			<version>${flink.version}</version>
 			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-table-runtime</artifactId>
-			<version>${project.version}</version>
+			<version>${flink.version}</version>
 			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-table-calcite-bridge</artifactId>
-			<version>${project.version}</version>
+			<version>${flink.version}</version>
 			<scope>provided</scope>
-			<optional>${flink.markBundledAsOptional}</optional>
 		</dependency>
 
 		<!-- test dependencies for table planner -->
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-table-planner_${scala.binary.version}</artifactId>
-			<version>${project.version}</version>
+			<version>${flink.version}</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -224,14 +223,14 @@ under the License.
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-sql-gateway-api</artifactId>
-			<version>${project.version}</version>
+			<version>${flink.version}</version>
 			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-json</artifactId>
-			<version>${project.version}</version>
+			<version>${flink.version}</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -240,21 +239,19 @@ under the License.
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-hadoop-compatibility_${scala.binary.version}</artifactId>
-			<version>${project.version}</version>
-			<optional>${flink.markBundledAsOptional}</optional>
+			<version>${flink.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-hadoop-bulk</artifactId>
-			<version>${project.version}</version>
-			<optional>${flink.markBundledAsOptional}</optional>
+			<version>${flink.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-connector-files</artifactId>
-			<version>${project.version}</version>
+			<version>${flink.version}</version>
 		</dependency>
 
 		<!-- Formats -->
@@ -262,8 +259,7 @@ under the License.
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-orc</artifactId>
-			<version>${project.version}</version>
-			<optional>${flink.markBundledAsOptional}</optional>
+			<version>${flink.version}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.apache.orc</groupId>
@@ -275,8 +271,7 @@ under the License.
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-orc-nohive</artifactId>
-			<version>${project.version}</version>
-			<optional>${flink.markBundledAsOptional}</optional>
+			<version>${flink.version}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.apache.orc</groupId>
@@ -288,8 +283,7 @@ under the License.
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-parquet</artifactId>
-			<version>${project.version}</version>
-			<optional>${flink.markBundledAsOptional}</optional>
+			<version>${flink.version}</version>
 		</dependency>
 
 		<!-- File systems -->
@@ -297,8 +291,7 @@ under the License.
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-hadoop-fs</artifactId>
-			<version>${project.version}</version>
-			<optional>${flink.markBundledAsOptional}</optional>
+			<version>${flink.version}</version>
 		</dependency>
 
 		<!-- Hadoop -->
@@ -660,13 +653,14 @@ under the License.
 		<dependency>
 			<groupId>org.assertj</groupId>
 			<artifactId>assertj-core</artifactId>
+			<version>${assertj.version}</version>
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-table-common</artifactId>
-			<version>${project.version}</version>
+			<version>${flink.version}</version>
 			<type>test-jar</type>
 			<scope>test</scope>
 		</dependency>
@@ -674,7 +668,7 @@ under the License.
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-table-api-java</artifactId>
-			<version>${project.version}</version>
+			<version>${flink.version}</version>
 			<type>test-jar</type>
 			<scope>test</scope>
 		</dependency>
@@ -682,14 +676,14 @@ under the License.
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-table-api-scala-bridge_${scala.binary.version}</artifactId>
-			<version>${project.version}</version>
+			<version>${flink.version}</version>
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-table-planner_${scala.binary.version}</artifactId>
-			<version>${project.version}</version>
+			<version>${flink.version}</version>
 			<type>test-jar</type>
 			<scope>test</scope>
 		</dependency>
@@ -698,13 +692,13 @@ under the License.
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-java</artifactId>
-			<version>${project.version}</version>
+			<version>${flink.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-clients</artifactId>
-			<version>${project.version}</version>
+			<version>${flink.version}</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -1044,21 +1038,21 @@ under the License.
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-csv</artifactId>
-			<version>${project.version}</version>
+			<version>${flink.version}</version>
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-test-utils</artifactId>
-			<version>${project.version}</version>
+			<version>${flink.version}</version>
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-connector-test-utils</artifactId>
-			<version>${project.version}</version>
+			<version>${flink.version}</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -1086,6 +1080,7 @@ under the License.
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-architecture-tests-test</artifactId>
+			<version>${flink.version}</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -1094,7 +1089,7 @@ under the License.
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-sql-gateway-api</artifactId>
-			<version>${project.version}</version>
+			<version>${flink.version}</version>
 			<type>test-jar</type>
 			<scope>test</scope>
 		</dependency>
@@ -1102,7 +1097,7 @@ under the License.
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-sql-gateway</artifactId>
-			<version>${project.version}</version>
+			<version>${flink.version}</version>
 			<scope>test</scope>
 		</dependency>
 		
@@ -1110,7 +1105,7 @@ under the License.
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-sql-gateway</artifactId>
 			<type>test-jar</type>
-			<version>${project.version}</version>
+			<version>${flink.version}</version>
 			<scope>test</scope>
 		</dependency>
 
