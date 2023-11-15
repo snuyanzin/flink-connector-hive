@@ -74,6 +74,10 @@ under the License.
 						<groupId>org.pentaho</groupId>
 						<artifactId>pentaho-aggdesigner-algorithm</artifactId>
 					</exclusion>
+					<exclusion>
+						<groupId>net.minidev</groupId>
+						<artifactId>json-smart</artifactId>
+					</exclusion>
 				</exclusions>
 			</dependency>
 
@@ -284,6 +288,12 @@ under the License.
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-parquet</artifactId>
 			<version>${flink.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.google.protobuf</groupId>
+					<artifactId>protobuf-java</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<!-- File systems -->
@@ -315,6 +325,10 @@ under the License.
 				<exclusion>
 					<groupId>org.slf4j</groupId>
 					<artifactId>slf4j-reload4j</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>net.minidev</groupId>
+					<artifactId>json-smart</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>
@@ -651,13 +665,6 @@ under the License.
 		<!-- Tests -->
 
 		<dependency>
-			<groupId>org.assertj</groupId>
-			<artifactId>assertj-core</artifactId>
-			<version>${assertj.version}</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-table-common</artifactId>
 			<version>${flink.version}</version>
@@ -805,6 +812,10 @@ under the License.
 					<groupId>org.slf4j</groupId>
 					<artifactId>slf4j-reload4j</artifactId>
 				</exclusion>
+				<exclusion>
+					<groupId>net.minidev</groupId>
+					<artifactId>json-smart</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 
@@ -921,6 +932,10 @@ under the License.
 					<groupId>org.pentaho</groupId>
 					<artifactId>pentaho-aggdesigner-algorithm</artifactId>
 				</exclusion>
+				<exclusion>
+					<groupId>net.minidev</groupId>
+					<artifactId>json-smart</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 
@@ -989,6 +1004,10 @@ under the License.
 				<exclusion>
 					<groupId>org.pentaho</groupId>
 					<artifactId>pentaho-aggdesigner-algorithm</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>net.minidev</groupId>
+					<artifactId>json-smart</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>
@@ -1061,17 +1080,6 @@ under the License.
 			<groupId>org.apache.derby</groupId>
 			<artifactId>derby</artifactId>
 			<version>${derby.version}</version>
-			<scope>test</scope>
-		</dependency>
-
-		<!--We downgrade the version of avro for tests. We do that because we test Hive's built-in
-			formats, which do not work with newer avro versions. We do not downgrade the version
-			permanently, because it should be safe to use hive as a catalog with newer avro
-			versions. -->
-		<dependency>
-			<groupId>org.apache.avro</groupId>
-			<artifactId>avro</artifactId>
-			<version>${hive.avro.version}</version>
 			<scope>test</scope>
 		</dependency>
 
