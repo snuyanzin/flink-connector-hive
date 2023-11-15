@@ -204,7 +204,6 @@ under the License.
 				</dependency>
 			</dependencies>
 		</profile>
-	<profiles>
 		<profile>
 			<id>run-end-to-end-tests</id>
 			<build>
