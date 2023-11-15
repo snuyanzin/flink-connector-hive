@@ -90,6 +90,20 @@ under the License.
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <!-- dependency convergence -->
+                <groupId>org.codehaus.woodstox</groupId>
+                <artifactId>stax2-api</artifactId>
+                <version>4.2.1</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <!-- dependency convergence -->
+                <groupId>javax.servlet</groupId>
+                <artifactId>servlet-api</artifactId>
+                <version>2.5</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
                 <groupId>joda-time</groupId>
                 <artifactId>joda-time</artifactId>
                 <version>2.5</version>
@@ -101,6 +115,12 @@ under the License.
                 <groupId>javax.xml.bind</groupId>
                 <artifactId>jaxb-api</artifactId>
                 <version>${jaxb.api.version}</version>
+            </dependency>
+            <!-- Make sure we use a consistent commons-cli version throughout the project -->
+            <dependency>
+                <groupId>commons-cli</groupId>
+                <artifactId>commons-cli</artifactId>
+                <version>1.5.0</version>
             </dependency>
             <dependency>
                 <groupId>commons-io</groupId>
@@ -116,6 +136,11 @@ under the License.
                 <groupId>org.apache.httpcomponents</groupId>
                 <artifactId>httpclient</artifactId>
                 <version>4.5.13</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpcore</artifactId>
+                <version>4.4.1</version>
             </dependency>
             <dependency>
                 <groupId>org.codehaus.jackson</groupId>

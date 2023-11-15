@@ -50,6 +50,12 @@ under the License.
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
+				<groupId>org.apache.curator</groupId>
+				<artifactId>curator-recipes</artifactId>
+				<version>2.13.0</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
 				<groupId>org.apache.hadoop</groupId>
 				<artifactId>hadoop-common</artifactId>
 				<version>${hive.hadoop.version}</version>
@@ -81,6 +87,22 @@ under the License.
 					<exclusion>
 						<groupId>org.codehaus.woodstox</groupId>
 						<artifactId>stax2-api</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>com.google.guava</groupId>
+						<artifactId>guava</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>io.dropwizard.metrics</groupId>
+						<artifactId>metrics-core</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.apache.zookeeper</groupId>
+						<artifactId>zookeeper</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.apache.curator</groupId>
+						<artifactId>curator-framework</artifactId>
 					</exclusion>
 				</exclusions>
 			</dependency>
@@ -1017,6 +1039,10 @@ under the License.
 					<groupId>net.minidev</groupId>
 					<artifactId>json-smart</artifactId>
 				</exclusion>
+				<exclusion>
+					<groupId>io.dropwizard.metrics</groupId>
+					<artifactId>metrics-core</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 
@@ -1074,6 +1100,12 @@ under the License.
 			<artifactId>flink-test-utils</artifactId>
 			<version>${flink.version}</version>
 			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>com.google.guava</groupId>
+					<artifactId>guava</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>
@@ -1154,6 +1186,18 @@ under the License.
 				<exclusion>
 					<groupId>org.pentaho</groupId>
 					<artifactId>pentaho-aggdesigner-algorithm</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.hadoop</groupId>
+					<artifactId>hadoop-annotations</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.hive.shims</groupId>
+					<artifactId>hive-shims-common</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.hive.shims</groupId>
+					<artifactId>hive-shims-0.23</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>
