@@ -78,6 +78,10 @@ under the License.
 						<groupId>net.minidev</groupId>
 						<artifactId>json-smart</artifactId>
 					</exclusion>
+					<exclusion>
+						<groupId>org.codehaus.woodstox</groupId>
+						<artifactId>stax2-api</artifactId>
+					</exclusion>
 				</exclusions>
 			</dependency>
 
