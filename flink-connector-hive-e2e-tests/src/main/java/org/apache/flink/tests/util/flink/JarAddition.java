@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package util.flink;
+package org.apache.flink.tests.util.flink;
 
 import java.nio.file.Path;
 

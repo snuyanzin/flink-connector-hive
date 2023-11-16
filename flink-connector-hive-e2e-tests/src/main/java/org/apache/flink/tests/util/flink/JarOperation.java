@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package util.flink;
+package org.apache.flink.tests.util.flink;
 
 /** Represents a move/copy operation for a jar. */
 class JarOperation {

@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package util;
+package org.apache.flink.tests.util;
 
 import java.io.File;
 import java.io.IOException;

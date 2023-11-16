@@ -16,23 +16,12 @@
  * limitations under the License.
  */
 
-package util.flink;
+package org.apache.flink.tests.util.flink;
 
-import okhttp3.FormBody;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
-import org.apache.commons.io.FilenameUtils;
 import org.apache.flink.api.common.JobID;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.configuration.GlobalConfiguration;
 import org.apache.flink.configuration.UnmodifiableConfiguration;
-import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.JsonNode;
-import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.node.ObjectNode;
 import org.apache.flink.test.util.FileUtils;
 import org.apache.flink.test.util.JobSubmission;
 import org.apache.flink.test.util.SQLJobClientMode;
@@ -43,6 +32,19 @@ import org.apache.flink.util.ExceptionUtils;
 import org.apache.flink.util.function.FutureTaskWithException;
 import org.apache.flink.util.function.RunnableWithException;
 import org.apache.flink.util.jackson.JacksonMapperFactory;
+
+import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.JsonNode;
+import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.node.ObjectNode;
+
+import okhttp3.FormBody;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
+import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.event.Level;
@@ -279,11 +281,11 @@ public final class FlinkDistribution {
             submitSQL(
                     () -> {
                         try (Connection connection =
-                                        DriverManager.getConnection(
-                                                String.format(
-                                                        "jdbc:hive2://%s:%s/default;auth=noSasl;",
-                                                        hiveJdbc.getHost(), hiveJdbc.getPort()));
-                                Statement statement = connection.createStatement()) {
+                                     DriverManager.getConnection(
+                                             String.format(
+                                                     "jdbc:hive2://%s:%s/default;auth=noSasl;",
+                                                     hiveJdbc.getHost(), hiveJdbc.getPort()));
+                             Statement statement = connection.createStatement()) {
                             for (String jar : job.getJars()) {
                                 statement.execute(String.format("ADD JAR '%s'", jar));
                             }
@@ -440,10 +442,10 @@ public final class FlinkDistribution {
                     continue;
                 }
                 try (BufferedReader br =
-                        new BufferedReader(
-                                new InputStreamReader(
-                                        new FileInputStream(logFile.toFile()),
-                                        StandardCharsets.UTF_8))) {
+                             new BufferedReader(
+                                     new InputStreamReader(
+                                             new FileInputStream(logFile.toFile()),
+                                             StandardCharsets.UTF_8))) {
                     String line;
                     while ((line = br.readLine()) != null) {
                         Matcher matcher = pattern.matcher(line);

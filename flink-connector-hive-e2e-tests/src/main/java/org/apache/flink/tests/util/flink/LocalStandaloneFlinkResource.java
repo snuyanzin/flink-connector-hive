@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package util.flink;
+package org.apache.flink.tests.util.flink;
 
 import org.apache.flink.api.common.JobID;
 import org.apache.flink.configuration.Configuration;
@@ -31,12 +31,14 @@ import org.apache.flink.tests.util.TestUtils;
 import org.apache.flink.util.ConfigurationException;
 import org.apache.flink.util.concurrent.Executors;
 import org.apache.flink.util.concurrent.FutureUtils;
+
 import org.junit.rules.TemporaryFolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.event.Level;
 
 import javax.annotation.Nullable;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.time.Duration;

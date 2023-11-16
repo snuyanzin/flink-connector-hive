@@ -16,14 +16,16 @@
  * limitations under the License.
  */
 
-package util;
+package org.apache.flink.tests.util;
 
 import org.apache.flink.api.common.time.Deadline;
 import org.apache.flink.util.Preconditions;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.Nullable;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;

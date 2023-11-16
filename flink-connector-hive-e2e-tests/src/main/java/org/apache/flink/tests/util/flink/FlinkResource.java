@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package util.flink;
+package org.apache.flink.tests.util.flink;
 
 import org.apache.flink.test.util.JobSubmission;
 import org.apache.flink.tests.util.util.FactoryUtils;

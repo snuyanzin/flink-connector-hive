@@ -15,12 +15,13 @@
  * limitations under the License.
  */
 
-package util.flink;
+package org.apache.flink.tests.util.flink;
 
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.util.Preconditions;
 
 import javax.annotation.Nullable;
+
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;

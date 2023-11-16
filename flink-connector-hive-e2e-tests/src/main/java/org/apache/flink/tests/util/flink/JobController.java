@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package util.flink;
+package org.apache.flink.tests.util.flink;
 
 /** Controller for interacting with a job. */
 public interface JobController {}

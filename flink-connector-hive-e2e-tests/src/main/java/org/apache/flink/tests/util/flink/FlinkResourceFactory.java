@@ -16,23 +16,19 @@
  * limitations under the License.
  */
 
-package util.flink;
+package org.apache.flink.tests.util.flink;
 
-import org.apache.flink.test.util.SQLJobSubmission;
-import org.apache.flink.util.AutoCloseableAsync;
-
-import java.io.IOException;
-import java.time.Duration;
-
-/** Controller for interacting with a SqlGateway. */
-public interface GatewayController extends AutoCloseableAsync {
+/** A factory for {@link FlinkResource} implementations. */
+@FunctionalInterface
+public interface FlinkResourceFactory {
 
     /**
-     * Submits the given SQL job to the cluster.
+     * Returns a {@link FlinkResource} instance. If the instance could not be instantiated (for
+     * example, because a mandatory parameter was missing), then an exception should be thrown.
      *
-     * @param job job to submit.
-     * @param timeout the maximum time to wait.
-     * @throws IOException if any IO error happen.
+     * @param setup setup instructions for the FlinkResource
+     * @return FlinkResource instance,
+     * @throws Exception if the instance could not be instantiated
      */
-    void submitSQLJob(SQLJobSubmission job, Duration timeout) throws Exception;
+    FlinkResource create(FlinkResourceSetup setup) throws Exception;
 }
