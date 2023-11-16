@@ -25,11 +25,11 @@ under the License.
 
 	<parent>
 		<groupId>org.apache.flink</groupId>
-		<artifactId>flink-connectors</artifactId>
-		<version>1.19-SNAPSHOT</version>
+		<artifactId>flink-connector-hive-parent</artifactId>
+		<version>3.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>flink-connector-hive_${scala.binary.version}</artifactId>
+	<artifactId>flink-connector-hive</artifactId>
 	<name>Flink : Connectors : Hive</name>
 
 	<packaging>jar</packaging>
@@ -49,6 +49,12 @@ under the License.
 
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>org.apache.curator</groupId>
+				<artifactId>curator-recipes</artifactId>
+				<version>2.13.0</version>
+				<scope>test</scope>
+			</dependency>
 			<dependency>
 				<groupId>org.apache.hadoop</groupId>
 				<artifactId>hadoop-common</artifactId>
@@ -73,6 +79,26 @@ under the License.
 					<exclusion>
 						<groupId>org.pentaho</groupId>
 						<artifactId>pentaho-aggdesigner-algorithm</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>net.minidev</groupId>
+						<artifactId>json-smart</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>com.google.guava</groupId>
+						<artifactId>guava</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>io.dropwizard.metrics</groupId>
+						<artifactId>metrics-core</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.apache.zookeeper</groupId>
+						<artifactId>zookeeper</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.apache.curator</groupId>
+						<artifactId>curator-framework</artifactId>
 					</exclusion>
 				</exclusions>
 			</dependency>
@@ -186,37 +212,36 @@ under the License.
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-table-common</artifactId>
-			<version>${project.version}</version>
+			<version>${flink.version}</version>
 			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-table-api-java-bridge</artifactId>
-			<version>${project.version}</version>
+			<version>${flink.version}</version>
 			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-table-runtime</artifactId>
-			<version>${project.version}</version>
+			<version>${flink.version}</version>
 			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-table-calcite-bridge</artifactId>
-			<version>${project.version}</version>
+			<version>${flink.version}</version>
 			<scope>provided</scope>
-			<optional>${flink.markBundledAsOptional}</optional>
 		</dependency>
 
 		<!-- test dependencies for table planner -->
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-table-planner_${scala.binary.version}</artifactId>
-			<version>${project.version}</version>
+			<version>${flink.version}</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -224,14 +249,14 @@ under the License.
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-sql-gateway-api</artifactId>
-			<version>${project.version}</version>
+			<version>${flink.version}</version>
 			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-json</artifactId>
-			<version>${project.version}</version>
+			<version>${flink.version}</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -240,21 +265,19 @@ under the License.
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-hadoop-compatibility_${scala.binary.version}</artifactId>
-			<version>${project.version}</version>
-			<optional>${flink.markBundledAsOptional}</optional>
+			<version>${flink.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-hadoop-bulk</artifactId>
-			<version>${project.version}</version>
-			<optional>${flink.markBundledAsOptional}</optional>
+			<version>${flink.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-connector-files</artifactId>
-			<version>${project.version}</version>
+			<version>${flink.version}</version>
 		</dependency>
 
 		<!-- Formats -->
@@ -262,8 +285,7 @@ under the License.
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-orc</artifactId>
-			<version>${project.version}</version>
-			<optional>${flink.markBundledAsOptional}</optional>
+			<version>${flink.version}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.apache.orc</groupId>
@@ -275,8 +297,7 @@ under the License.
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-orc-nohive</artifactId>
-			<version>${project.version}</version>
-			<optional>${flink.markBundledAsOptional}</optional>
+			<version>${flink.version}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.apache.orc</groupId>
@@ -288,8 +309,17 @@ under the License.
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-parquet</artifactId>
-			<version>${project.version}</version>
-			<optional>${flink.markBundledAsOptional}</optional>
+			<version>${flink.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.google.protobuf</groupId>
+					<artifactId>protobuf-java</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>io.airlift</groupId>
+					<artifactId>aircompressor</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<!-- File systems -->
@@ -297,8 +327,7 @@ under the License.
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-hadoop-fs</artifactId>
-			<version>${project.version}</version>
-			<optional>${flink.markBundledAsOptional}</optional>
+			<version>${flink.version}</version>
 		</dependency>
 
 		<!-- Hadoop -->
@@ -322,6 +351,10 @@ under the License.
 				<exclusion>
 					<groupId>org.slf4j</groupId>
 					<artifactId>slf4j-reload4j</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>net.minidev</groupId>
+					<artifactId>json-smart</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>
@@ -658,15 +691,9 @@ under the License.
 		<!-- Tests -->
 
 		<dependency>
-			<groupId>org.assertj</groupId>
-			<artifactId>assertj-core</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-table-common</artifactId>
-			<version>${project.version}</version>
+			<version>${flink.version}</version>
 			<type>test-jar</type>
 			<scope>test</scope>
 		</dependency>
@@ -674,7 +701,7 @@ under the License.
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-table-api-java</artifactId>
-			<version>${project.version}</version>
+			<version>${flink.version}</version>
 			<type>test-jar</type>
 			<scope>test</scope>
 		</dependency>
@@ -682,14 +709,14 @@ under the License.
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-table-api-scala-bridge_${scala.binary.version}</artifactId>
-			<version>${project.version}</version>
+			<version>${flink.version}</version>
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-table-planner_${scala.binary.version}</artifactId>
-			<version>${project.version}</version>
+			<version>${flink.version}</version>
 			<type>test-jar</type>
 			<scope>test</scope>
 		</dependency>
@@ -698,13 +725,13 @@ under the License.
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-java</artifactId>
-			<version>${project.version}</version>
+			<version>${flink.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-clients</artifactId>
-			<version>${project.version}</version>
+			<version>${flink.version}</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -810,6 +837,10 @@ under the License.
 				<exclusion>
 					<groupId>org.slf4j</groupId>
 					<artifactId>slf4j-reload4j</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>net.minidev</groupId>
+					<artifactId>json-smart</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>
@@ -927,6 +958,10 @@ under the License.
 					<groupId>org.pentaho</groupId>
 					<artifactId>pentaho-aggdesigner-algorithm</artifactId>
 				</exclusion>
+				<exclusion>
+					<groupId>net.minidev</groupId>
+					<artifactId>json-smart</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 
@@ -996,6 +1031,14 @@ under the License.
 					<groupId>org.pentaho</groupId>
 					<artifactId>pentaho-aggdesigner-algorithm</artifactId>
 				</exclusion>
+				<exclusion>
+					<groupId>net.minidev</groupId>
+					<artifactId>json-smart</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>io.dropwizard.metrics</groupId>
+					<artifactId>metrics-core</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 
@@ -1044,21 +1087,27 @@ under the License.
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-csv</artifactId>
-			<version>${project.version}</version>
+			<version>${flink.version}</version>
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-test-utils</artifactId>
-			<version>${project.version}</version>
+			<version>${flink.version}</version>
 			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>com.google.guava</groupId>
+					<artifactId>guava</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-connector-test-utils</artifactId>
-			<version>${project.version}</version>
+			<version>${flink.version}</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -1070,22 +1119,12 @@ under the License.
 			<scope>test</scope>
 		</dependency>
 
-		<!--We downgrade the version of avro for tests. We do that because we test Hive's built-in
-			formats, which do not work with newer avro versions. We do not downgrade the version
-			permanently, because it should be safe to use hive as a catalog with newer avro
-			versions. -->
-		<dependency>
-			<groupId>org.apache.avro</groupId>
-			<artifactId>avro</artifactId>
-			<version>${hive.avro.version}</version>
-			<scope>test</scope>
-		</dependency>
-
 		<!-- ArchUit test dependencies -->
 
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-architecture-tests-test</artifactId>
+			<version>${flink.version}</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -1094,7 +1133,7 @@ under the License.
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-sql-gateway-api</artifactId>
-			<version>${project.version}</version>
+			<version>${flink.version}</version>
 			<type>test-jar</type>
 			<scope>test</scope>
 		</dependency>
@@ -1102,15 +1141,15 @@ under the License.
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-sql-gateway</artifactId>
-			<version>${project.version}</version>
+			<version>${flink.version}</version>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-sql-gateway</artifactId>
 			<type>test-jar</type>
-			<version>${project.version}</version>
+			<version>${flink.version}</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -1143,6 +1182,18 @@ under the License.
 				<exclusion>
 					<groupId>org.pentaho</groupId>
 					<artifactId>pentaho-aggdesigner-algorithm</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.hadoop</groupId>
+					<artifactId>hadoop-annotations</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.hive.shims</groupId>
+					<artifactId>hive-shims-common</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.hive.shims</groupId>
+					<artifactId>hive-shims-0.23</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>
