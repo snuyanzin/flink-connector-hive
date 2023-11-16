@@ -35,16 +35,15 @@ under the License.
 	<packaging>jar</packaging>
 
 	<properties>
-		<hiverunner.version>4.0.0</hiverunner.version>
-		<reflections.version>0.9.8</reflections.version>
 		<derby.version>10.10.2.0</derby.version>
-		<hive.avro.version>1.8.2</hive.avro.version>
 		<!--
 		Hive requires Hadoop 2 to avoid
 		java.lang.NoClassDefFoundError: org/apache/hadoop/metrics/Updater errors
 		Using this dedicated property avoids CI failures with the Hadoop 3 profile
 		-->
 		<hive.hadoop.version>2.10.2</hive.hadoop.version>
+		<hiverunner.version>4.0.0</hiverunner.version>
+		<reflections.version>0.9.8</reflections.version>
 	</properties>
 
 	<dependencyManagement>
