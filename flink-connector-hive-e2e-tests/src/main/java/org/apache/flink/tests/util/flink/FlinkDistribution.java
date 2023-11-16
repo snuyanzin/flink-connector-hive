@@ -281,11 +281,11 @@ public final class FlinkDistribution {
             submitSQL(
                     () -> {
                         try (Connection connection =
-                                     DriverManager.getConnection(
-                                             String.format(
-                                                     "jdbc:hive2://%s:%s/default;auth=noSasl;",
-                                                     hiveJdbc.getHost(), hiveJdbc.getPort()));
-                             Statement statement = connection.createStatement()) {
+                                        DriverManager.getConnection(
+                                                String.format(
+                                                        "jdbc:hive2://%s:%s/default;auth=noSasl;",
+                                                        hiveJdbc.getHost(), hiveJdbc.getPort()));
+                                Statement statement = connection.createStatement()) {
                             for (String jar : job.getJars()) {
                                 statement.execute(String.format("ADD JAR '%s'", jar));
                             }
@@ -442,10 +442,10 @@ public final class FlinkDistribution {
                     continue;
                 }
                 try (BufferedReader br =
-                             new BufferedReader(
-                                     new InputStreamReader(
-                                             new FileInputStream(logFile.toFile()),
-                                             StandardCharsets.UTF_8))) {
+                        new BufferedReader(
+                                new InputStreamReader(
+                                        new FileInputStream(logFile.toFile()),
+                                        StandardCharsets.UTF_8))) {
                     String line;
                     while ((line = br.readLine()) != null) {
                         Matcher matcher = pattern.matcher(line);
