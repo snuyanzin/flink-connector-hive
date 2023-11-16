@@ -45,45 +45,28 @@ under the License.
 
     <properties>
         <flink.version>1.19-SNAPSHOT</flink.version>
-        <hiverunner.version>4.0.0</hiverunner.version>
-        <reflections.version>0.9.8</reflections.version>
-        <derby.version>10.10.2.0</derby.version>
-        <hive.version>2.3.9</hive.version>
-        <hive.avro.version>1.8.2</hive.avro.version>
+
+        <assertj.version>3.24.2</assertj.version>
         <!--
             Hive 2.3.4 relies on Hadoop 2.7.2 and later versions.
             For Hadoop 2.7, the minor Hadoop version supported for flink-shaded-hadoop-2-uber is 2.7.5
         -->
         <hadoop.version>2.7.5</hadoop.version>
-
-        <target.java.version>1.8</target.java.version>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-
-        <!--hive common dependency-->
-        <guava.version>31.1-jre</guava.version>
-        <guice.version>4.0</guice.version>
-        <kryo.version>2.24.0</kryo.version>
-        <jersey.version>1.19</jersey.version>
-        <netty.version>4.1.86.Final</netty.version>
-
+        <hive.version>2.3.9</hive.version>
+        <hive.avro.version>1.8.2</hive.avro.version>
         <!-- Keep Janino in sync with calcite. -->
         <janino.version>3.1.10</janino.version>
-        <jsonpath.version>2.7.0</jsonpath.version>
         <jackson-bom.version>2.14.3</jackson-bom.version>
-        <mockito.version>3.4.6</mockito.version>
+        <jaxb.api.version>2.3.1</jaxb.api.version>
         <junit4.version>4.13.2</junit4.version>
         <junit-jupiter.version>5.10.1</junit-jupiter.version>
-        <assertj.version>3.24.2</assertj.version>
-
-        <scala.binary.version>2.12</scala.binary.version>
-        <jackson.version>2.14.3</jackson.version>
-        <zookeeper.version>3.7.1</zookeeper.version>
-        <slf4j.version>1.7.36</slf4j.version>
         <log4j.version>2.17.1</log4j.version>
-        <scala-library.version>2.12</scala-library.version>
-        <jaxb.api.version>2.3.1</jaxb.api.version>
+        <mockito.version>3.4.6</mockito.version>
+        <scala.binary.version>2.12</scala.binary.version>
+        <slf4j.version>1.7.36</slf4j.version>
         <testcontainers.version>1.19.1</testcontainers.version>
+        <zookeeper.version>3.7.1</zookeeper.version>
+
         <flink.parent.artifactId>flink-connector-hive-parent</flink.parent.artifactId>
     </properties>
 
@@ -284,12 +267,12 @@ under the License.
             <dependency>
                 <groupId>org.codehaus.janino</groupId>
                 <artifactId>janino</artifactId>
-                <version>3.1.10</version>
+                <version>${janino.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.codehaus.janino</groupId>
                 <artifactId>commons-compiler</artifactId>
-                <version>3.1.10</version>
+                <version>${janino.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
