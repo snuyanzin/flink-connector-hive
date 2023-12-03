@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package org.apache.flink.tests.util;
+package org.apache.flink.connectors.hive.tests.util;
 
 import java.io.File;
 import java.io.IOException;

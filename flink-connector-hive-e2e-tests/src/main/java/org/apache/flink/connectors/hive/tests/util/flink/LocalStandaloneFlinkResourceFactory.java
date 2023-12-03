@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package org.apache.flink.tests.util.flink;
+package org.apache.flink.connectors.hive.tests.util.flink;
 
 import org.apache.flink.test.parameters.ParameterProperty;
 import org.apache.flink.test.util.FileUtils;

@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package org.apache.flink.tests.util.util;
+package org.apache.flink.connectors.hive.tests.util.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

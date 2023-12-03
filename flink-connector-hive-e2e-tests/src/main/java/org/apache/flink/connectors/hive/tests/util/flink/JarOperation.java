@@ -15,26 +15,45 @@
  * limitations under the License.
  */
 
-package org.apache.flink.tests.util.flink;
+package org.apache.flink.connectors.hive.tests.util.flink;
 
-import java.nio.file.Path;
+/** Represents a move/copy operation for a jar. */
+class JarOperation {
 
-/** Represents an add operation for a jar. */
-class JarAddition {
-
-    private final Path jar;
+    private final String jarNamePrefix;
+    private final JarLocation source;
     private final JarLocation target;
+    private final OperationType operationType;
 
-    JarAddition(Path jar, JarLocation target) {
-        this.jar = jar;
+    JarOperation(
+            String jarNamePrefix,
+            JarLocation source,
+            JarLocation target,
+            OperationType operationType) {
+        this.jarNamePrefix = jarNamePrefix;
+        this.source = source;
         this.target = target;
+        this.operationType = operationType;
     }
 
-    public Path getJar() {
-        return jar;
+    public String getJarNamePrefix() {
+        return jarNamePrefix;
+    }
+
+    public JarLocation getSource() {
+        return source;
     }
 
     public JarLocation getTarget() {
         return target;
+    }
+
+    public OperationType getOperationType() {
+        return operationType;
+    }
+
+    public enum OperationType {
+        COPY,
+        MOVE;
     }
 }

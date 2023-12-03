@@ -15,11 +15,26 @@
  * limitations under the License.
  */
 
-package org.apache.flink.tests.util.flink;
+package org.apache.flink.connectors.hive.tests.util.flink;
 
-/** Enum for specifying jar locations. */
-public enum JarLocation {
-    LIB,
-    OPT,
-    PLUGINS
+import java.nio.file.Path;
+
+/** Represents an add operation for a jar. */
+class JarAddition {
+
+    private final Path jar;
+    private final JarLocation target;
+
+    JarAddition(Path jar, JarLocation target) {
+        this.jar = jar;
+        this.target = target;
+    }
+
+    public Path getJar() {
+        return jar;
+    }
+
+    public JarLocation getTarget() {
+        return target;
+    }
 }

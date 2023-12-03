@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package org.apache.flink.tests.util.flink;
+package org.apache.flink.connectors.hive.tests.util.flink;
 
 /** A factory for {@link FlinkResource} implementations. */
 @FunctionalInterface

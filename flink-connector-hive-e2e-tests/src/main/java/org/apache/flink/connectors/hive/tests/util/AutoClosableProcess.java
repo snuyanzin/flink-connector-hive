@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package org.apache.flink.tests.util;
+package org.apache.flink.connectors.hive.tests.util;
 
 import org.apache.flink.api.common.time.Deadline;
 import org.apache.flink.util.Preconditions;
