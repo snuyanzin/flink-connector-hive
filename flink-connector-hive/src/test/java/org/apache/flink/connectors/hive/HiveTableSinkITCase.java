@@ -130,53 +130,35 @@ class HiveTableSinkITCase {
         if (FlinkVersion.current() == FlinkVersion.v1_18) {
             tEnv.executeSql("create database db1");
             tEnv.useDatabase("db1");
-
-            tEnv.executeSql(
-                    "CREATE TABLE test_table ("
-                            + " id int,"
-                            + " real_col int"
-                            + ") TBLPROPERTIES ("
-                            + " 'sink.parallelism' = '8'" // set sink parallelism = 8
-                            + ")");
-            tEnv.getConfig().setSqlDialect(SqlDialect.DEFAULT);
-            final String actual =
-                    tEnv.explainSql(
-                            "insert into test_table select 1, 1",
-                            ExplainDetail.JSON_EXECUTION_PLAN);
-            final String expected = readFromResource(expectedResourceFileName);
-
-            assertThat(replaceNodeIdInOperator(replaceStreamNodeId(replaceStageId(actual))))
-                    .isEqualTo(
-                            replaceNodeIdInOperator(replaceStreamNodeId(replaceStageId(expected))));
-
+            tableSinkWithParallelism(tEnv, expectedResourceFileName);
             tEnv.executeSql("drop database db1 cascade");
         } else {
             TableEnvExecutorUtil.executeInSeparateDatabase(
                     tEnv,
                     true,
                     () -> {
-                        tEnv.executeSql(
-                                "CREATE TABLE test_table ("
-                                        + " id int,"
-                                        + " real_col int"
-                                        + ") TBLPROPERTIES ("
-                                        + " 'sink.parallelism' = '8'" // set sink parallelism = 8
-                                        + ")");
-                        tEnv.getConfig().setSqlDialect(SqlDialect.DEFAULT);
-                        final String actual =
-                                tEnv.explainSql(
-                                        "insert into test_table select 1, 1",
-                                        ExplainDetail.JSON_EXECUTION_PLAN);
-                        final String expected = readFromResource(expectedResourceFileName);
-
-                        assertThat(
-                                        replaceNodeIdInOperator(
-                                                replaceStreamNodeId(replaceStageId(actual))))
-                                .isEqualTo(
-                                        replaceNodeIdInOperator(
-                                                replaceStreamNodeId(replaceStageId(expected))));
+                        tableSinkWithParallelism(tEnv, expectedResourceFileName);
                     });
         }
+    }
+
+    private static void tableSinkWithParallelism(
+            TableEnvironment tEnv, String expectedResourceFileName) {
+        tEnv.executeSql(
+                "CREATE TABLE test_table ("
+                        + " id int,"
+                        + " real_col int"
+                        + ") TBLPROPERTIES ("
+                        + " 'sink.parallelism' = '8'" // set sink parallelism = 8
+                        + ")");
+        tEnv.getConfig().setSqlDialect(SqlDialect.DEFAULT);
+        final String actual =
+                tEnv.explainSql(
+                        "insert into test_table select 1, 1", ExplainDetail.JSON_EXECUTION_PLAN);
+        final String expected = readFromResource(expectedResourceFileName);
+
+        assertThat(replaceNodeIdInOperator(replaceStreamNodeId(replaceStageId(actual))))
+                .isEqualTo(replaceNodeIdInOperator(replaceStreamNodeId(replaceStageId(expected))));
     }
 
     @Test
