@@ -27,7 +27,7 @@ jobs:
       matrix:
         flink: [ 1.18.0, 1.19-SNAPSHOT ]
         jdk: [ 8, 11 ]
-        mvn_profile: [ hive2, hive3 ]
+        mvn_profile: [ "", hive3 ]
         exclude:
           - jdk: 11
             mvn_profile: hive3
