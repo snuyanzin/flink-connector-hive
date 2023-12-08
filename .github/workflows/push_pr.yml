@@ -25,21 +25,22 @@ jobs:
   compile_and_test:
     strategy:
       matrix:
-        flink: [ 1.18.0, 1.19-SNAPSHOT ]
+        flink: [ 1.18-SNAPSHOT, 1.19-SNAPSHOT ]
         jdk: [ 8, 11 ]
-        mvn_profile: [ hive2, hive3 ]
+        # empty means test against hive2
+        mvn_profile: [ "", hive3 ]
         exclude:
           - jdk: 11
             mvn_profile: hive3
         include:
           - jdk: 11
-            flink: 1.18.0
+            flink: 1.18-SNAPSHOT
             mvn_profile: "hive3,skipE2ETests"
           - jdk: 11
             flink: 1.19-SNAPSHOT
             mvn_profile: "hive3,skipE2ETests"
 
-    uses: ./.github/workflows/ci.yml
+    uses: apache/flink-connector-shared-utils/.github/workflows/ci.yml@ci_utils
     with:
       flink_version: ${{ matrix.flink }}
       jdk_version: ${{ matrix.jdk }}
