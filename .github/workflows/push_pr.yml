@@ -39,7 +39,7 @@ jobs:
             flink: 1.19-SNAPSHOT
             mvn_profile: "hive3,skipE2ETests"
 
-    uses: snuyanzin/flink-connector-shared-utils/.github/workflows/ci.yml@flink33776
+    uses: apache/flink-connector-shared-utils/.github/workflows/ci.yml@ci_utils
     with:
       flink_version: ${{ matrix.flink }}
       jdk_version: ${{ matrix.jdk }}
